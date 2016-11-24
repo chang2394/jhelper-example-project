@@ -1,0 +1,29 @@
+2 AT
+2 AT
+13 tasks/AT.task
+8 STANDARD
+9 input.txt
+8 STANDARD
+10 output.txt
+6 SINGLE
+2
+0
+27 5
+2 5 1 4 6
+1 7
+1 1
+3 5
+3 6
+10 1 0 1 0 0
+
+1
+1
+27 5
+9 7 8 6 5
+1 1
+2 1
+3 1
+4 1
+10 4 3 2 1 0
+
+0
