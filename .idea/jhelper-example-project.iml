@@ -3,15 +3,20 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/library/lib.hpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/tasks/AT.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/output/main.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tasks/Cards.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/tasks/Sample.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/tasks/copy.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/tasks/Task.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tasks/AT.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tasks/copy.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tasks/Numbers.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tasks/Plants.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tasks/Cola.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/tasks/Flowers.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/tasks/Mex.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/testrunner/main.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tasks/Army.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/output/main.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/testrunner/main.cpp" isTestSource="false" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">

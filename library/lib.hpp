@@ -73,7 +73,7 @@ void __f(const char* names, Arg1&& arg1, Args&&... args) {
 #define S second
 #define FOR(i,a,b) for(int i=(a);i<=(b);++i)
 #define NFOR(i,a,b) for(int i=(a);i>=(b);--i)
-#define TCASE int __T;cin>>__T;FOR(Tc,1,__T)
+#define TCASE(in) int __T;in>>__T;FOR(Tc,1,__T)
 #define ass(n,l,r) assert(n>=l and n<=r)
 inline int add(int a, int b, int m = INF) {a += b; if (a >= m)a -= m; return a;}
 inline int mul(int a, int b, int m = INF) {return (int)(((ll)a * (ll)b) % m);}
@@ -85,7 +85,7 @@ int dy[] {0, -1, 0, 1, 1, -1, 1, -1};
 const double PI  = 3.14159265358979323846L;
 const int oo  = numeric_limits<int>::max() / 2 - 10;
 const double eps = 1e-6;
-const int mod = 1000000007;
+const long long mod = 1000000007;
 
 int getTheAnswer() {
     return 42;

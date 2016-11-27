@@ -1,4 +1,4 @@
-#include "/Users/chintu.k/Documents/codes/jhelper-example-project/tasks/AT.cpp"
+#include "/Users/chintu.k/Documents/codes/jhelper-example-project/tasks/Army.cpp"
 
 #include <iostream>
 #include <fstream>
@@ -29,7 +29,7 @@ bool check(std::string expected, std::string actual) {
 
 int main() {
 	std::vector<jhelper::Test> tests = {
-		{"5\n2 5 1 4 6\n1 7\n1 1\n3 5\n3 6", "1 0 1 0 0\n", true, true},{"5\n9 7 8 6 5\n1 1\n2 1\n3 1\n4 1", "4 3 2 1 0\n", false, true},
+		{"1\n2 2 2\n1 1\n1 2\n1 1\n1 2\n1 2\n1 1", "0", true, true},{"2\n3 4 5\n2 1 2\n2 1 4\n2 3 4\n1 3\n2 2 5\n3 1 3 4\n2 3 2\n1 2\n1 4\n3 5 1 3\n2 2 2\n1 1\n1 2\n1 1\n1 2\n1 2\n1 1", "3\n0", true, true},
 	};
 	bool allOK = true;
 	int testID = 0;
@@ -48,7 +48,7 @@ int main() {
 			std::stringstream in(test.input);
 			std::ostringstream out;
 			std::clock_t start = std::clock();
-			AT solver;
+			Army solver;
 			solver.solve(in, out);
 			std::clock_t finish = std::clock();
 			double currentTime = double(finish - start) / CLOCKS_PER_SEC;
