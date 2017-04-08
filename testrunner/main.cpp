@@ -1,4 +1,4 @@
-#include "/Users/chintu.k/Documents/codes/jhelper-example-project/tasks/Army.cpp"
+#include "/Users/chintu.kumar/Documents/jhelper-example-project/tasks/Jumping.cpp"
 
 #include <iostream>
 #include <fstream>
@@ -29,7 +29,7 @@ bool check(std::string expected, std::string actual) {
 
 int main() {
 	std::vector<jhelper::Test> tests = {
-		{"1\n2 2 2\n1 1\n1 2\n1 1\n1 2\n1 2\n1 1", "0", true, true},{"2\n3 4 5\n2 1 2\n2 1 4\n2 3 4\n1 3\n2 2 5\n3 1 3 4\n2 3 2\n1 2\n1 4\n3 5 1 3\n2 2 2\n1 1\n1 2\n1 1\n1 2\n1 2\n1 1", "3\n0", true, true},
+		{"2\n5\n1 1 1 1 1\n5\n2 2 2 2 2", "4\n3\n2\n1\n0\n2\n-1\n1\n-1\n0", true, true},
 	};
 	bool allOK = true;
 	int testID = 0;
@@ -48,7 +48,7 @@ int main() {
 			std::stringstream in(test.input);
 			std::ostringstream out;
 			std::clock_t start = std::clock();
-			Army solver;
+			Jumping solver;
 			solver.solve(in, out);
 			std::clock_t finish = std::clock();
 			double currentTime = double(finish - start) / CLOCKS_PER_SEC;

@@ -23,7 +23,10 @@
 #include <string>
 
 #include <cmath>
+#include <fstream>
 using namespace std;
+
+typedef pair<int, int> ii;
 
 
 #define TRACE
@@ -48,119 +51,83 @@ ostream& operator<<(ostream& out, const multimap<T, U>& a) {for (auto &it : a)ou
 #define praa(a,n,m)
 #endif
 
-#define FOR(i,a,b) for(int i=(a);i<=(b);++i)
-#define TCASE(in) int __T;in>>__T;FOR(Tc,1,__T)
+#define mp make_pair
+#define F first
+#define S second
 
-/**
-    left side - n
-    right side - m
-**/
+const int oo  = numeric_limits<int>::max() / 2 - 10;
 
-/* code */
-const int ND = 102;
-const int MD = 11234;
+const int ND = 2e5+10;
+int to[ND], head[ND], nxt[ND];
+int edges = 0;
 
-int head[ND], to[MD], nxt[MD];
-int matchL[ND], matchR[MD];
-bool seen[MD];
-int n,m,nEdges = 0;
+int dist[ND];
+bool vis[ND];
 
-inline void init(){
-    nEdges = 0;
-    memset(head,-1,sizeof(head));
-    memset(matchL,-1,sizeof(matchL));
-    memset(matchR,-1,sizeof(matchR));
-}
-
-inline void addEdge(int x,int y){
-    to[nEdges] = y, nxt[nEdges] = head[x];
-    head[x] = nEdges++;
-}
-
-bool path(int x){
-    for(int i = head[x]; i >= 0; i = nxt[i]){
-        int y = to[i];
-        if (seen[y]) continue;
-        seen[y] = true;
-
-        if (matchR[y] < 0 or path(matchR[y])){
-            matchR[y] = x;
-            matchL[x] = y;
-            return true;
-        }
-    }
-    return false;
-}
-
-int bpm(){
-    int ans = 0;
-    for(int i = 0; i < n; ++i){
-        memset(seen,false,sizeof(seen));
-        if (path(i)) ++ans;
-    }
-    return ans;
-}
-
-bool sp[ND][ND], sw[ND][ND], pw[ND][ND];
-
-void input(int tot, bool a[ND][ND], std::istream& in){
-    for(int i = 0; i < tot; ++i){
-        int k,temp;
-        in >> k;
-        for(int j = 0; j < k; ++j){
-            in >> temp;
-            a[i][temp-1] = true;
-//            pr(i,temp-1);
-        }
-    }
-}
-
-bool valid(int x,int y,int tot){
-    if (!sp[x][y]) return false;
-    for(int i = 0; i < tot; ++i){
-        if (sw[x][i] and pw[y][i]) {
-//            pr(x,y,i,sw[x][i],pw[y][i]);
-            return true;
-        }
-    }
-    return false;
-}
-
-class Army {
+class Jumping {
 public:
+	void reset(){
+		for(int i = 0; i < ND; ++i)
+			head[i] = -1, dist[i] = oo, vis[i] = false;
+		edges = 0;
+	}
+
+	void addEdge(int x,int y){
+		to[edges] = y;
+		nxt[edges] = head[x];
+		head[x] = edges++;
+	}
+
+	void calculate(int source){
+		priority_queue<ii,vector<ii>, greater<ii> > pq;
+		pq.push(mp(0,source));
+		dist[source] = 0;
+
+		while(!pq.empty()){
+			int x = pq.top().S;
+			int d = pq.top().F;
+
+			pq.pop();
+			if (vis[x]) continue;
+			vis[x] = true;
+
+			for(int i = head[x]; i >= 0; i = nxt[i]){
+				int y = to[i];
+				if (!vis[y] and dist[x]+1 < dist[y]){
+					dist[y] = dist[x]+1;
+					pq.push(mp(dist[y],y));
+				}
+			}
+		}
+	}
+
 	void solve(std::istream& in, std::ostream& out) {
-        TCASE(in){
-            int a,b,c;
-            in >> a >> b >> c;
+		int tc;
+		in >> tc;
 
-            for(int i = 0; i < ND; ++i){
-                for(int j = 0; j < ND; ++j)
-                    sp[i][j] = sw[i][j] = pw[i][j] = false;
-            }
+		while(tc--) {
+			reset();
+			int n;
+			in >> n;
 
-            init();
-            input(a,sp,in);
-            input(a,sw,in);
-            input(b,pw,in);
+			for (int i = 0; i < n; ++i) {
+				int jump;
+				in >> jump;
+				if (i - jump >= 0) addEdge(i - jump, i);
+				if (i + jump < n) addEdge(i + jump, i);
+			}
 
-            n = a, m = b;
-            for(int i = 0; i < a; ++i){
-                for(int j = 0; j < b; ++j){
-                    if (valid(i,j,c))
-                        addEdge(i,j);
-                }
-            }
-
-            int ans = bpm();
-            out << ans << "\n";
-        }
+			calculate(n - 1);
+			for (int i = 0; i < n; ++i)
+				out << ((dist[i] != oo) ? dist[i] : -1) << "\n";
+		}
 	}
 };
 
 
 int main() {
-	Army solver;
-	std::istream& in(std::cin);
+	Jumping solver;
+	std::ifstream in("jumping.in");
 	std::ostream& out(std::cout);
 	solver.solve(in, out);
 	return 0;
